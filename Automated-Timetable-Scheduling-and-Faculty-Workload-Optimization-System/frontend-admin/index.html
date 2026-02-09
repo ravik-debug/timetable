@@ -1,29 +1,40 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Character encoding for proper text display -->
     <meta charset="UTF-8" />
+
+    <!-- Google Material Icons -->
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
-    <!-- Favicon -->
+    <!-- Google Material Symbols (Outlined style) -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <!-- Website favicon (icon shown in browser tab) -->
     <link rel="icon" href="/favicon.ico" />
 
+    <!-- Makes website responsive on mobile devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Website Title -->
+    <!-- Website Title (appears in browser tab) -->
     <title>UniTT – Class Timetable Generator</title>
 
-    <!-- SEO Meta -->
+    <!-- SEO description (used by search engines) -->
     <meta
       name="description"
       content="UniTT is a web-based class timetable generator designed to simplify academic scheduling and reduce conflicts."
     />
+
+    <!-- Author of the website -->
     <meta name="author" content="UniTT Development Team" />
 
-    <!-- Open Graph (for link previews) -->
+    <!-- Open Graph Meta Tags (for Facebook/LinkedIn preview) -->
     <meta property="og:title" content="UniTT – Class Timetable Generator" />
     <meta
       property="og:description"
@@ -32,7 +43,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:image" content="/favicon.ico" />
 
-    <!-- Twitter Card -->
+    <!-- Twitter Card Meta Tags (for Twitter preview) -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="UniTT – Class Timetable Generator" />
     <meta
@@ -42,9 +53,10 @@
   </head>
 
   <body>
+    
     <div id="root"></div>
 
-    <!-- React entry point -->
+    <!-- Entry point of the React + TypeScript application -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

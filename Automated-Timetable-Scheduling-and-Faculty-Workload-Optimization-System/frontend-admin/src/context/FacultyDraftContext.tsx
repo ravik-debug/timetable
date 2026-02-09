@@ -12,4 +12,8 @@ export interface FacultyDraft {
 
   maxHoursPerDay?: number;
   maxHoursPerWeek?: number;
+
+  // 🔹 Newly added components
+  phoneNumber?: string;
+  experienceYears?: number;
 }

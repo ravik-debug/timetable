@@ -1,25 +1,39 @@
+/* Import Inter font from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
+/* Tailwind base layers */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Academic Timetable Management System - Design System */
-/* Professional, Enterprise-Grade Academic SaaS */
+/* =========================================================
+   Academic Timetable Management System - Design System
+   Professional, Enterprise-Grade Academic SaaS Theme
+========================================================= */
 
 @layer base {
   :root {
-    /* Core Brand Colors - Deep Academic Navy */
+    /* ===============================
+       CORE COLOR SYSTEM (LIGHT MODE)
+    =============================== */
+
+    /* Background & Text */
     --background: 210 20% 98%;
     --foreground: 222 47% 11%;
 
+    /* Card colors */
     --card: 0 0% 100%;
     --card-foreground: 222 47% 11%;
 
+    /* Popover (dropdown/modal) */
     --popover: 0 0% 100%;
     --popover-foreground: 222 47% 11%;
 
-    /* Primary - Deep Navy Blue */
+    /* ===============================
+       BRAND COLORS
+    =============================== */
+
+    /* Primary - Deep Academic Navy */
     --primary: 222 47% 20%;
     --primary-foreground: 210 40% 98%;
 
@@ -27,7 +41,7 @@
     --secondary: 215 20% 95%;
     --secondary-foreground: 222 47% 20%;
 
-    /* Muted - Gentle Gray */
+    /* Muted gray for subtle UI */
     --muted: 210 20% 96%;
     --muted-foreground: 215 16% 47%;
 
@@ -35,30 +49,40 @@
     --accent: 172 66% 40%;
     --accent-foreground: 0 0% 100%;
 
-    /* Destructive - Soft Red */
+    /* ===============================
+       STATUS COLORS
+    =============================== */
+
+    /* Error / Danger */
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Success - Emerald */
+    /* Success */
     --success: 160 84% 39%;
     --success-foreground: 0 0% 100%;
 
-    /* Warning - Warm Amber */
+    /* Warning */
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
 
-    /* Info - Sky Blue */
+    /* Info */
     --info: 199 89% 48%;
     --info-foreground: 0 0% 100%;
 
-    /* Border & Input */
+    /* ===============================
+       FORM + BORDERS
+    =============================== */
+
     --border: 214 32% 91%;
     --input: 214 32% 91%;
     --ring: 222 47% 20%;
 
     --radius: 0.625rem;
 
-    /* Sidebar - Darker variant */
+    /* ===============================
+       SIDEBAR THEME
+    =============================== */
+
     --sidebar-background: 222 47% 11%;
     --sidebar-foreground: 210 40% 96%;
     --sidebar-primary: 172 66% 50%;
@@ -68,7 +92,10 @@
     --sidebar-border: 222 47% 18%;
     --sidebar-ring: 172 66% 50%;
 
-    /* Timetable specific colors */
+    /* ===============================
+       TIMETABLE SLOT COLORS
+    =============================== */
+
     --slot-lecture: 217 91% 60%;
     --slot-lab: 262 83% 58%;
     --slot-tutorial: 172 66% 50%;
@@ -76,13 +103,22 @@
     --slot-conflict: 0 72% 51%;
     --slot-empty: 210 20% 98%;
 
-    /* Shadows */
+    /* ===============================
+       SHADOW SYSTEM
+    =============================== */
+
     --shadow-sm: 0 1px 2px 0 hsl(222 47% 11% / 0.05);
-    --shadow-md: 0 4px 6px -1px hsl(222 47% 11% / 0.1), 0 2px 4px -2px hsl(222 47% 11% / 0.1);
-    --shadow-lg: 0 10px 15px -3px hsl(222 47% 11% / 0.1), 0 4px 6px -4px hsl(222 47% 11% / 0.1);
-    --shadow-xl: 0 20px 25px -5px hsl(222 47% 11% / 0.1), 0 8px 10px -6px hsl(222 47% 11% / 0.1);
+    --shadow-md: 0 4px 6px -1px hsl(222 47% 11% / 0.1),
+      0 2px 4px -2px hsl(222 47% 11% / 0.1);
+    --shadow-lg: 0 10px 15px -3px hsl(222 47% 11% / 0.1),
+      0 4px 6px -4px hsl(222 47% 11% / 0.1);
+    --shadow-xl: 0 20px 25px -5px hsl(222 47% 11% / 0.1),
+      0 8px 10px -6px hsl(222 47% 11% / 0.1);
   }
 
+  /* ===============================
+     DARK MODE COLOR OVERRIDES
+  =============================== */
   .dark {
     --background: 222 47% 8%;
     --foreground: 210 40% 98%;
@@ -112,6 +148,7 @@
     --input: 222 47% 20%;
     --ring: 172 66% 50%;
 
+    /* Sidebar dark variant */
     --sidebar-background: 222 47% 6%;
     --sidebar-foreground: 210 40% 96%;
     --sidebar-primary: 172 66% 50%;
@@ -123,6 +160,9 @@
   }
 }
 
+/* ===============================
+   GLOBAL BASE STYLES
+=============================== */
 @layer base {
   * {
     @apply border-border;
@@ -133,6 +173,7 @@
     font-family: 'Inter', system-ui, sans-serif;
   }
 
+  /* Headings */
   h1,
   h2,
   h3,
@@ -143,8 +184,10 @@
   }
 }
 
+/* ===============================
+   COMPONENT CLASSES
+=============================== */
 @layer components {
-
   /* Timetable slot variants */
   .slot-lecture {
     @apply bg-blue-500/15 border-blue-500/30 text-blue-700;
@@ -170,12 +213,12 @@
     @apply bg-muted/50 border-dashed border-border;
   }
 
-  /* Card hover effects */
+  /* Card hover animation */
   .card-hover {
     @apply transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5;
   }
 
-  /* Metric cards */
+  /* Metric/stat cards */
   .metric-card {
     @apply relative overflow-hidden rounded-xl border bg-card p-6 shadow-sm transition-all duration-200 hover:shadow-md;
   }
@@ -198,7 +241,11 @@
   }
 }
 
+/* ===============================
+   UTILITY CLASSES
+=============================== */
 @layer utilities {
+  /* Gradient backgrounds */
   .gradient-primary {
     @apply bg-gradient-to-r from-primary to-primary/80;
   }
@@ -211,10 +258,12 @@
     @apply bg-gradient-to-br from-primary via-primary/90 to-accent/80;
   }
 
+  /* Gradient text */
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
   }
 
+  /* Animations */
   .animate-fade-in {
     animation: fadeIn 0.3s ease-out;
   }
@@ -227,14 +276,10 @@
     animation: scaleIn 0.2s ease-out;
   }
 
+  /* Keyframes */
   @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-
-    to {
-      opacity: 1;
-    }
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
   @keyframes slideUp {
@@ -242,7 +287,6 @@
       opacity: 0;
       transform: translateY(10px);
     }
-
     to {
       opacity: 1;
       transform: translateY(0);
@@ -254,13 +298,13 @@
       opacity: 0;
       transform: scale(0.95);
     }
-
     to {
       opacity: 1;
       transform: scale(1);
     }
   }
 
+  /* Custom thin scrollbar */
   .scrollbar-thin {
     scrollbar-width: thin;
     scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;

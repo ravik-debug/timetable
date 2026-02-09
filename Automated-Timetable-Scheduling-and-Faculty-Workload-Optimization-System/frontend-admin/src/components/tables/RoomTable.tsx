@@ -31,15 +31,25 @@ import {
   DropdownMenuSeparator,
 } from '@/components/ui/dropdown-menu';
 
+/**
+ * Props for RoomTable component
+ */
 interface RoomTableProps {
-  rooms: Room[];
-  onEdit?: (room: Room) => void;
-  onDelete?: (room: Room) => void;
-  onViewSchedule?: (room: Room) => void;
-  className?: string;
+  rooms: Room[];                         // List of rooms
+  onEdit?: (room: Room) => void;         // Edit room callback
+  onDelete?: (room: Room) => void;       // Delete room callback
+  onViewSchedule?: (room: Room) => void; // View schedule callback
+  className?: string;                    // Optional custom styles
 }
 
-const roomTypeConfig = {
+/**
+ * Configuration for room types
+ * Maps room type → label + styling
+ */
+const roomTypeConfig: Record<
+  string,
+  { label: string; class: string }
+> = {
   LECTURE: {
     label: 'Lecture Hall',
     class: 'bg-blue-500/10 text-blue-700 border-blue-500/30',
@@ -54,7 +64,10 @@ const roomTypeConfig = {
   },
 };
 
-
+/**
+ * RoomTable Component
+ * Displays room details in a structured table
+ */
 export function RoomTable({
   rooms,
   onEdit,
@@ -63,8 +76,15 @@ export function RoomTable({
   className,
 }: RoomTableProps) {
   return (
-    <div className={cn('rounded-xl border bg-card shadow-sm overflow-hidden', className)}>
+    <div
+      className={cn(
+        'rounded-xl border bg-card shadow-sm overflow-hidden',
+        className
+      )}
+    >
       <Table>
+
+        {/* ===== Table Header ===== */}
         <TableHeader>
           <TableRow className="bg-muted/50 hover:bg-muted/50">
             <TableHead className="w-[250px]">Room</TableHead>
@@ -77,37 +97,45 @@ export function RoomTable({
           </TableRow>
         </TableHeader>
 
+        {/* ===== Table Body ===== */}
         <TableBody>
           {rooms.map((room) => {
-            const typeConfig = roomTypeConfig[room.type] ?? {
-              label: room.type,
-              class: '',
-            };
-
+            // Get styling for room type
+            const typeConfig =
+              roomTypeConfig[room.type] ?? {
+                label: room.type,
+                class: '',
+              };
 
             return (
               <TableRow key={room.id} className="group">
-                {/* Room */}
+
+                {/* ===== Room Info ===== */}
                 <TableCell>
                   <div className="flex items-center gap-3">
+                    {/* Icon */}
                     <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted">
                       <Building2 className="h-5 w-5 text-muted-foreground" />
                     </div>
+
+                    {/* Name & Code */}
                     <div>
                       <p className="font-medium">{room.name}</p>
-                      <p className="text-sm text-muted-foreground">{room.code}</p>
+                      <p className="text-sm text-muted-foreground">
+                        {room.code}
+                      </p>
                     </div>
                   </div>
                 </TableCell>
 
-                {/* Building */}
+                {/* ===== Building & Floor ===== */}
                 <TableCell>
                   <span className="text-sm">
                     {room.building}, Floor {room.floor}
                   </span>
                 </TableCell>
 
-                {/* Type */}
+                {/* ===== Room Type ===== */}
                 <TableCell>
                   <Badge
                     variant="outline"
@@ -117,7 +145,7 @@ export function RoomTable({
                   </Badge>
                 </TableCell>
 
-                {/* Capacity */}
+                {/* ===== Capacity ===== */}
                 <TableCell className="text-center">
                   <div className="flex items-center justify-center gap-1 text-sm">
                     <Users className="h-3.5 w-3.5 text-muted-foreground" />
@@ -125,27 +153,33 @@ export function RoomTable({
                   </div>
                 </TableCell>
 
-                {/* Equipment */}
+                {/* ===== Equipment ===== */}
                 <TableCell>
                   <div className="flex flex-wrap gap-1">
+                    {/* Show first two equipment items */}
                     {(room.equipment ?? []).slice(0, 2).map((item) => (
-                      <Badge key={item} variant="secondary" className="text-xs">
+                      <Badge
+                        key={item}
+                        variant="secondary"
+                        className="text-xs"
+                      >
                         {item}
                       </Badge>
                     ))}
 
+                    {/* Show count if more items exist */}
                     {(room.equipment?.length ?? 0) > 2 && (
                       <Badge variant="secondary" className="text-xs">
                         +{room.equipment.length - 2}
                       </Badge>
                     )}
-
                   </div>
                 </TableCell>
 
-                {/* Status + Accessibility */}
+                {/* ===== Status & Accessibility ===== */}
                 <TableCell className="text-center">
                   <div className="flex items-center justify-center gap-2">
+                    {/* Availability Status */}
                     <Badge
                       variant="outline"
                       className={cn(
@@ -158,6 +192,7 @@ export function RoomTable({
                       {room.active ? 'Available' : 'Unavailable'}
                     </Badge>
 
+                    {/* Wheelchair Accessibility */}
                     {room.wheelchairAccessible && (
                       <div title="Wheelchair Accessible">
                         <Accessibility
@@ -169,7 +204,7 @@ export function RoomTable({
                   </div>
                 </TableCell>
 
-                {/* Actions */}
+                {/* ===== Actions ===== */}
                 <TableCell>
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -183,12 +218,16 @@ export function RoomTable({
                     </DropdownMenuTrigger>
 
                     <DropdownMenuContent align="end" className="w-48">
-                      <DropdownMenuItem onClick={() => onViewSchedule?.(room)}>
+                      <DropdownMenuItem
+                        onClick={() => onViewSchedule?.(room)}
+                      >
                         <Calendar className="mr-2 h-4 w-4" />
                         View Schedule
                       </DropdownMenuItem>
 
-                      <DropdownMenuItem onClick={() => onEdit?.(room)}>
+                      <DropdownMenuItem
+                        onClick={() => onEdit?.(room)}
+                      >
                         <Edit className="mr-2 h-4 w-4" />
                         Edit Details
                       </DropdownMenuItem>
@@ -205,6 +244,7 @@ export function RoomTable({
                     </DropdownMenuContent>
                   </DropdownMenu>
                 </TableCell>
+
               </TableRow>
             );
           })}
